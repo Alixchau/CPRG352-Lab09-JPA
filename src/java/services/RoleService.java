@@ -14,22 +14,11 @@ public class RoleService {
         List<Role> roles = roleDB.getAll();
         return roles;
     }
-   /* 
-        public int getRoleID(String role_name) throws SQLException {
-        RoleDB roleDB = new RoleDB();
-        int role_id = roleDB.getRoleID(role_name);
-        return role_id;
-    }
-    */
-    
+   
     public Role get(int role_id){
         RoleDB roleDB= new RoleDB();
         Role role = roleDB.get(role_id);
         return role;
     }
-    public String getRoleName(int role_id) throws SQLException {
-        RoleDB roleDB = new RoleDB();
-        String role_name = roleDB.getRoleName(role_id);
-        return role_name;
-    }
+
 }

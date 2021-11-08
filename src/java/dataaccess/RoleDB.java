@@ -33,16 +33,5 @@ public class RoleDB {
         }
     }
 
-    public String getRoleName(int role_id) throws SQLException {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-
-        try {
-            Role role = em.find(Role.class, em);
-            String role_name = role.getRoleName();
-            return role_name;
-        } finally {
-            em.close();
-        }
-    }
 
 }
