@@ -21,17 +21,17 @@
                         <li>
                             <select name="role">
                                 <option value="1"
-                                        <c:if test="${user.role.getRoleId() == 1}">
+                                        <c:if test="${role_id == 1}">
                                             selected
                                         </c:if>
                                         >system admin</option>
                                 <option value="2"
-                                        <c:if test="${user.role.getRoleId() == 2}">
+                                        <c:if test="${role_id == 2}">
                                             selected
                                         </c:if>
                                         >regular user</option>
                                 <option value="3"
-                                        <c:if test="${user.role.getRoleId() == 3}">
+                                        <c:if test="${role_id == 3}">
                                             selected
                                         </c:if>
                                         >company admin</option>

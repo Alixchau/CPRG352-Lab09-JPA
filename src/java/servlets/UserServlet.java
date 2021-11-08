@@ -84,7 +84,6 @@ public class UserServlet extends HttpServlet {
             String lastName = request.getParameter("lastName");
             String password = request.getParameter("password");
             int role_id = Integer.parseInt(request.getParameter("role"));
-            Role role = rs.get(role_id);
             User user = new User(email, active, firstName, lastName, password);
 
             if (AllFieldsFilled(email, active, firstName, lastName, password, role_id)) {
@@ -94,7 +93,8 @@ public class UserServlet extends HttpServlet {
                     Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                request.setAttribute("user", user);
+                request.setAttribute("user", user); //show user object's attribute on screen while user input not valid to proceed
+                request.setAttribute("role_id", role_id);//show role on screen while user input not valid to proceed
                 request.setAttribute("errorMessage_EddUser", true);
                 getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
                 return;
@@ -112,7 +112,7 @@ public class UserServlet extends HttpServlet {
             if (Update_active_string == null) {
                 Update_active = false;
             }
-            Role Update_role = rs.get(Update_role_id);
+
             User Update_user = new User(Update_email, Update_active, Update_firstName, Update_lastName, Update_password);
 
             if (AllFieldsFilled(Update_email, Update_active, Update_firstName, Update_lastName, Update_password, Update_role_id)) {
