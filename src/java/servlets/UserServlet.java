@@ -1,6 +1,6 @@
 package servlets;
 
-import dataaccess.RoleDB;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Role;
 import models.User;
-import services.RoleService;
 import services.UserService;
 
 /**
@@ -32,15 +31,13 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserService us = new UserService();
-        RoleService rs = new RoleService();
-        RoleDB roleDB = new RoleDB();
+
         String action = request.getParameter("action");
 
         if (action == null) {//show all users
             session.setAttribute("editMode", false);
             try {
                 List<User> userList = us.getAll();
-                session.setAttribute("roles", roleDB);
                 session.setAttribute("userList", userList);
             } catch (Exception ex) {
                 Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,8 +66,7 @@ public class UserServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         UserService us = new UserService();
-        RoleService rs = new RoleService();
-        
+
         String action = request.getParameter("action");
 
         if (action.equals("add")) {
@@ -134,10 +130,7 @@ public class UserServlet extends HttpServlet {
             String userPrimaryKey = request.getParameter("userPrimaryKey");
             try {
                 us.delete(userPrimaryKey);
-
                 List<User> userList = us.getAll();
-                RoleDB roleDB = new RoleDB();
-                session.setAttribute("roles", roleDB);
                 session.setAttribute("userList", userList);
 
             } catch (Exception ex) {

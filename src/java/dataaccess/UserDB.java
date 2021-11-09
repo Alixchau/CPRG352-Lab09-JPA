@@ -41,7 +41,7 @@ public class UserDB {
         EntityTransaction trans = em.getTransaction();
         try {
             Role role = user.getRole(); // get the role that the user belongs to
-            role.getUserList().add(user); //new user must be added to the role (many to one relationship: many users belong to one role)
+            role.getUserList().add(user); //new user must be added to the role (many to one relationship: many users belong to one role). update the many side data
             trans.begin();
             em.persist(user);
             em.merge(user);
